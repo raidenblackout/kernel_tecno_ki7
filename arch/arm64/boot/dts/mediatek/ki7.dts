@@ -1,0 +1,409 @@
+/dts-v1/;
+/{
+    model = "mediatek,MT6769H";
+	compatible = <&model>, "mediatek,MT6768";
+    interrupt-parent = <1>;
+    #address-cells = <2>;
+    #size-cells = <2>;
+    serial-number = "0978254334105730";
+    chasis-type = "handset";
+
+    cpus {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        cpu0: cpu@0 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x000>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu1: cpu@1 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x100>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu2: cpu@2 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x200>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu3: cpu@3 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x300>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu4: cpu@4 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x400>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu5: cpu@101 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a55";
+            reg = <0x500>;
+            enable-method = "psci";
+            clock-frequency = <1701000000>;
+            operating-points-v2 = <&opp_table0>;
+            dynamic-power-coefficient = <85>;
+            capacity-dmips-mhz = <495>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu6: cpu@102 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a75";
+            reg = <0x600>;
+            enable-method = "psci";
+            clock-frequency = <2171000000>;
+            operating-points-v2 = <&opp_table1>;
+            dynamic-power-coefficient = <275>;
+            capacity-dmips-mhz = <1024>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu7: cpu@103 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a75";
+            reg = <0x700>;
+            enable-method = "psci";
+            clock-frequency = <2171000000>;
+            operating-points-v2 = <&opp_table1>;
+            dynamic-power-coefficient = <275>;
+            capacity-dmips-mhz = <1024>;
+            cpu-idle-states = <&standby &mcdi-cpu &mcdi-cluster &idledram &idlesyspll &idlebus26m &suspend>;
+        };
+        cpu-map {
+            cluster0 {
+                core0 {
+                    cpu = <&cpu0>;
+                };
+                core1 {
+                    cpu = <&cpu1>;
+                };
+                core2 {
+                    cpu = <&cpu2>;
+                };
+                core3 {
+                    cpu = <&cpu3>;
+                };
+                core4 {
+                    cpu = <&cpu4>;
+                };
+                core5 {
+                    cpu = <&cpu5>;
+                };
+            };
+            cluster1 {
+                core0 {
+                    cpu = <&cpu6>;
+                };
+                core1 {
+                    cpu = <&cpu7>;
+                };
+            };
+        };
+        idle-states {
+            entry-method = "arm,psci";
+            standby {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <1>;
+                entry-latency-us = <600>;
+                exit-latency-us = <600>;
+                min-residency-us = <1200>;
+            };
+            mcdi-cpu {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <65537>;
+                entry-latency-us = <600>;
+                exit-latency-us = <600>;
+                min-residency-us = <1200>;
+            };
+            mcdi-cluster {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <16842753>;
+                entry-latency-us = <600>;
+                exit-latency-us = <600>;
+                min-residency-us = <1200>;
+            };
+            idledram {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <16842754>;
+                entry-latency-us = <800>;
+                exit-latency-us = <1000>;
+                min-residency-us = <2000>;
+                status = "okay";
+            };
+            idlesyspll {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <16842755>;
+                entry-latency-us = <800>;
+                exit-latency-us = <1000>;
+                min-residency-us = <2000>;
+                status = "okay";
+            };
+            idlebus26m {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <16842756>;
+                entry-latency-us = <800>;
+                exit-latency-us = <1000>;
+                min-residency-us = <2000>;
+                status = "okay";
+            };
+            suspend {
+                compatible = "arm,idle-state";
+                arm,psci-suspend-param = <16842757>;
+                entry-latency-us = <800>;
+                exit-latency-us = <1000>;
+                min-residency-us = <2000>;
+            };
+        };
+    };
+
+    memory {
+        device_type = "memory";
+        reg = <0x0 0x40000000 0x0 0x3E605000>;
+    };
+
+    chosen {
+        bootargs = "console=tty0 console=ttyS0,921600n1";
+        kaslr-seed = <0x0 0x0>;
+    };
+
+    mmc@11230000 {
+        compatible = "mediatek,mt6768-mmc";
+        reg = <0 287506432 0 65536 0 298647552 0 4096 >;
+        interrupts = <0 100 8>;
+        clocks = <20 60 38 28 38 76 38 68>;
+        clock-names = "source", "hclk", "source_cg", "crypto_clk";
+        status = "okay";
+        host-index = <0>;
+        host-function = <0>;
+        pinctrl-names = "default", "state_uhs", "pull_down";
+        pinctrl-0 = <58>;
+        pinctrl-1 = <59>;
+        pinctrl-2 = <60>;
+        bus-width = <8>;
+        max-frequency = <200000000>;
+        cap-mmc-highspeed;
+        mmc-ddr-1_8v;
+        mmc-hs200-1_8v;
+        mmc-hs400-1_8v;
+        no-sdio;
+        no-sd;
+        hs400-ds-delay = <75796>;
+        mediatek,cqhci;
+        vmmc-supply = <61>;//Phandle
+        non-removable;
+    };
+    mmc@11240000 {
+        compatible = "mediatek,mt6768-mmc";
+        reg = <0 287571968 0 65536 0 298385408 0 4096>;
+        interrupts = <0 101 8>;
+        clocks = <20 61 38 29 38 77>;
+        clock-names = "source", "hclk", "source_cg";
+        status = "okay";
+        host-index = <1>;
+        host-function = <1>;
+        pinctrl-names = "default", "state_uhs", "pull_down";
+        pinctrl-0 = <62>;
+        pinctrl-1 = <63>;
+        pinctrl-2 = <64>;
+        bus-width = <4>;
+        max-frequency = <200000000>;
+        cap-sd-highspeed;
+        sd-uhs-sdr12;
+        sd-uhs-sdr25;
+        sd-uhs-sdr50;
+        sd-uhs-sdr104;
+        sd-uhs-ddr50;
+        cd-gpios = <32 18 0>;
+        vmmc-supply = <65>;
+        vqmmc-supply = <66>;
+        no-mmc;
+        no-sdio;
+    };
+    opp_table0 {
+        compatible = "operating-points-v2";
+        opp0 {
+            opp-hz = /bits/ 64 <500000000>;
+            opp-microvolt = <675000>;
+        };
+        opp1 {
+            opp-hz = /bits/ 64 <774000000>;
+            opp-microvolt = <675000>;
+        };
+        opp2 {
+            opp-hz = /bits/ 64 <850000000>;
+            opp-microvolt = <700000>;
+        };
+        opp3 {
+            opp-hz = /bits/ 64 <900000000>;
+            opp-microvolt = <718750>;
+        };
+        opp4 {
+            opp-hz = /bits/ 64 <950000000>;
+            opp-microvolt = <731250>;
+        };
+        opp5 {
+            opp-hz = /bits/ 64 <999000000>;
+            opp-microvolt = <743750>;
+        };
+        opp6 {
+            opp-hz = /bits/ 64 <1050000000>;
+            opp-microvolt = <762500>;
+        };
+        opp7 {
+            opp-hz = /bits/ 64 <1100000000>;
+            opp-microvolt = <775000>;
+        };
+        opp8 {
+            opp-hz = /bits/ 64 <1175000000>;
+            opp-microvolt = <800000>;
+        };
+        opp9 {
+            opp-hz = /bits/ 64 <1275000000>;
+            opp-microvolt = <831250>;
+        };
+        opp10 {
+            opp-hz = /bits/ 64 <1325000000>;
+            opp-microvolt = <843750>;
+        };
+        opp11 {
+            opp-hz = /bits/ 64 <1375000000>;
+            opp-microvolt = <856250>;
+        };
+        opp12 {
+            opp-hz = /bits/ 64 <1450000000>;
+            opp-microvolt = <881250>;
+        };
+        opp13 {
+            opp-hz = /bits/ 64 <1500000000>;
+            opp-microvolt = <893750>;
+        };
+        opp14 {
+            opp-hz = /bits/ 64 <1625000000>;
+            opp-microvolt = <931250>;
+        };
+        opp15 {
+            opp-hz = /bits/ 64 <1700000000>;
+            opp-microvolt = <962500>;
+        };
+    };
+    opp_table1 {
+        compatible = "operating-points-v2";
+        opp0 {
+            opp-hz = /bits/ 64 <850000000>;
+            opp-microvolt = <675000>;
+        };
+        opp1 {
+            opp-hz = /bits/ 64 <909000000>;
+            opp-microvolt = <700000>;
+        };
+        opp2 {
+            opp-hz = /bits/ 64 <998000000>;
+            opp-microvolt = <731250>;
+        };
+        opp3 {
+            opp-hz = /bits/ 64 <1087000000>;
+            opp-microvolt = <768750>;
+        };
+        opp4 {
+            opp-hz = /bits/ 64 <1176000000>;
+            opp-microvolt = <800000>;
+        };
+        opp5 {
+            opp-hz = /bits/ 64 <1295000000>;
+            opp-microvolt = <843750>;
+        };
+        opp6 {
+            opp-hz = /bits/ 64 <1354000000>;
+            opp-microvolt = <868750>;
+        };
+        opp7 {
+            opp-hz = /bits/ 64 <1443000000>;
+            opp-microvolt = <900000>;
+        };
+        opp8 {
+            opp-hz = /bits/ 64 <1532000000>;
+            opp-microvolt = <931250>;
+        };
+        opp9 {
+            opp-hz = /bits/ 64 <1621000000>;
+            opp-microvolt = <968750>;
+        };
+        opp10 {
+            opp-hz = /bits/ 64 <1710000000>;
+            opp-microvolt = <1000000>;
+        };
+        opp11 {
+            opp-hz = /bits/ 64 <1800000000>;
+            opp-microvolt = <1031250>;
+        };
+        opp12 {
+            opp-hz = /bits/ 64 <1850000000>;
+            opp-microvolt = <1050000>;
+        };
+        opp13 {
+            opp-hz = /bits/ 64 <1900000000>;
+            opp-microvolt = <1062500>;
+        };
+        opp14 {
+            opp-hz = /bits/ 64 <1950000000>;
+            opp-microvolt = <1075000>;
+        };
+        opp15 {
+            opp-hz = /bits/ 64 <2000000000>;
+            opp-microvolt = <1087500>;
+        };
+    };
+    mmc0default {
+        pins_cmd_dat {
+            pinmux = <0x7B01 0x8001 0x7D01 0x8401 0x7E01 0x8101 0x7F01 0x8201 0x7A01>;
+            input-enable;
+            drive-strength = <0x4>;
+            bias-pull-up = <0x65>;
+        };
+        pins_clk {
+            pinmux = <0x7C01>;
+            drive-strength = <0x4>;
+            bias-pull-down = <0x66>;
+        };
+        pins_ds {
+            pinmux = <0x8301>;
+            drive-strength = <0x4>;
+            bias-pull-down = <0x66>;
+        };
+        pins_rst {
+            pinmux = <0x8501>;
+            drive-strength = <0x4>;
+            bias-pull-up = <0x65>;
+        };
+    };
+};
